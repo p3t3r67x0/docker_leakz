@@ -49,7 +49,7 @@ docker-compose up -d
 Now you may run `docker ps` to verify that all three containers are up and running. Next we want to execute the following command. Make sure to replace `<password>` with your choosen password some steps above.
 
 ```sh
-docker exec docker_leakz_mongodb_1 bash -c "mongo intel --authenticationDatabase admin -u admin -p <password> create_user.js"
+docker exec docker_leakz_mongodb_1 bash -c "mongo admin create.js"
 ```
 
 Then you should be able to open the website under http://127.0.0.1:8000/
