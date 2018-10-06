@@ -30,6 +30,9 @@ Then you create a `.config` file in the same frontend folder.
 }
 ```
 
+
+## Build
+
 Now you are ready to run following commands.
 
 ```sh
