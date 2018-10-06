@@ -38,4 +38,5 @@ docker-compose up -d
 ```
 
 Now you may run `docker ps` to verify that all three containers are up and running.
+
 Then you should be able to open the website under http://127.0.0.1:8000/
