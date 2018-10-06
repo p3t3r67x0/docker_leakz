@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  nginx:
+    build: ./nginx
+    domainname: app.local
+    hostname: nginx
+    links:
+      - frontend
+    ports:
+      - 0.0.0.0:8000:80
+    volumes:
+      - nginx:/etc/nginx
+
+  frontend:
+    build: ./frontend
+    domainname: app.local
+    hostname: frontend
+    expose:
+      - 5000
+    links:
+      - mongodb
+ 
+  mongodb:
+    build: ./mongodb
+    domainname: app.local
+    hostname: mongo
+    expose:
+      - 27017
+    volumes:
+      - mongodb/:/data/db
+
+volumes:
+  mongodb:
+  nginx:
