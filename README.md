@@ -15,7 +15,6 @@ cd docker_leakz
 First things first. There are some steps you might do to run the container. You must create `create_user.js` file in the **mongodb** folder. Then you want to replace `<password>` with your own password.
 
 ```js
-db.createUser({user: "admin", pwd: "<password>", roles: [{ role: "userAdminAnyDatabase", db: "admin" }] })
 db.createUser({user: "pymongo", pwd: "<password>", roles: [{ role: "readWrite", db: "intel" }] });
 ```
 
@@ -49,7 +48,7 @@ docker-compose up -d
 Now you may run `docker ps` to verify that all three containers are up and running. Next we want to execute the following command. Make sure to replace `<password>` with your choosen password some steps above.
 
 ```sh
-docker exec docker_leakz_mongodb_1 bash -c "mongo admin create.js"
+docker exec docker_leakz_mongodb_1 bash -c "mongo intel create.js"
 ```
 
 Then you should be able to open the website under http://127.0.0.1:8000/
