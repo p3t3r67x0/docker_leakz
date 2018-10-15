@@ -20,16 +20,27 @@ services:
       - 5000
     links:
       - mongodb
+      - influxdb
  
   mongodb:
     build: ./mongodb
     domainname: app.local
     hostname: mongo
-    expose:
-      - 27017
+    ports:
+      - 127.0.0.1:27017:27017
     volumes:
-      - mongodb/:/data/db
+      - /var/lib/mongodb/:/data/db
+
+  influxdb:
+    build: ./influxdb
+    domainname: app.local
+    hostname: influx
+    expose:
+      - 8086
+    volumes:
+      - influxdb:/var/lib/influxdb
 
 volumes:
   mongodb:
+  influxdb:
   nginx:
