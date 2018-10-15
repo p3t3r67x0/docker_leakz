@@ -26,12 +26,14 @@ Next you must create a `.secret` file in the **frontend** folder. Then you want 
 
 Then you create a `.config` file in the same **frontend** folder.
 
-```js
+```json
 {
-    "db_name": "intel",
-    "db_uri": "mongodb",
-    "db_port_mails": "27017",
-    "db_port_passwords": "27017"
+    "mongodb_db": "intel",
+    "mongodb_uri": "mongodb",
+    "mongodb_port": "27017",
+    "influxdb_db": "metric",
+    "influxdb_uri": "influxdb",
+    "influxdb_port": "8086"
 }
 ```
 
