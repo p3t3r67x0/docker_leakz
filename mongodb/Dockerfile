@@ -1,2 +1,2 @@
-FROM mongo:3.6.8-stretch
+FROM mongo:3.2.21-jessie
 COPY create_user.js create.js
