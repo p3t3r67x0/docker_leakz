@@ -1,16 +1,20 @@
 version: '3'
 
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
 services:
   nginx:
     build: ./nginx
     domainname: app.local
     hostname: nginx
-    links:
-      - frontend
     ports:
       - 0.0.0.0:8000:80
-    volumes:
-      - nginx:/etc/nginx
+    links:
+      - frontend
 
   frontend:
     build: ./frontend
@@ -35,12 +39,32 @@ services:
     build: ./influxdb
     domainname: app.local
     hostname: influx
-    expose:
-      - 8086
+    ports:
+      - 8083:8083
+      - 8086:8086
     volumes:
       - influxdb:/var/lib/influxdb
 
+  telegraf:
+    build: ./telegraf
+    domainname: app.local
+    hostname: telegraf
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 8094:8094
+    links:
+      - influxdb
+      - mongodb
+      - nginx
+
+  chronograf:
+    build: ./chronograf
+    domainname: app.local
+    hostname: chronograf
+    ports:
+      - 8888:8888
+    links:
+      - influxdb
 volumes:
-  mongodb:
   influxdb:
-  nginx:
